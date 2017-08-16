@@ -1,0 +1,35 @@
+<!--pages/photoInfo/photoInfo.wxml-->
+<view class="container">
+<scroll-view scroll-y="false" style="height:100%">
+  <view class="photo-info">
+    <view class="options" hidden="{{simpleModel}}">
+      <view class="option" wx:for="{{tagName}}" data-typeId="{{item.id}}" bindtap="switchTab">
+        <text class="{{item.id == typeId ?'option-text':''}}">{{item.name}}</text>
+      </view>
+    </view>
+    <view class="img-list" bindtap="simpleModel">
+      <swiper class="img-swiper" current="{{index}}" bindchange="imgChange">
+        <swiper-item wx:for="{{imgList}}" wx:for-index="number">
+          <image style="width:750rpx;height:500rpx" wx:if="{{index == number || (index - number) == 1 || (number - index) == 1}}" src="{{item.url}}"></image>
+        </swiper-item>
+      </swiper>
+      <view class="indicator" wx:if="{{total}}">
+        <text class="current">{{index + 1}}</text>
+        <text class="between">/</text>
+        <text class="total">{{total}}</text>
+      </view>
+    </view>
+    <view class="footer-bar" bindtap="switchModel" wx:if="{{imgList[index]}}" hidden="{{simpleModel}}">
+      <view class="truck-info">
+        <text class="truck-name" wx:if="{{imgList[index] && imgList[index].name}}">{{imgList[index].name}}</text>
+        厂商指导价:
+        <text class="price-text" wx:if="{{imgList[index] && imgList[index].price}}">{{imgList[index].price > 0 ? imgList[index].price + '万' : '暂无'}}</text>
+         <text wx:else>暂无</text> 
+      </view>
+      <view class="footer-price" wx:if="{{priceButton && imgList[index] && imgList[index].isMake != 4}}" data-productid="{{imgList[index].F_ProductId}}" catchtap="goFooterPrice" id="footerPrice">
+        <text>询底价</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+</view>

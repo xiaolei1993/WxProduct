@@ -1,0 +1,139 @@
+<!--品牌选车-->
+<view class="container">
+  <scroll-view class="brand-wrapper"  scroll-y  scroll-into-view="{{navInfo}}" bindscroll="scrollNav" scroll-with-animation="true">
+     <view class="recommend" id="top">
+      <text class="header">推荐品牌</text>
+      <view class="recommend-list">
+        <view class="recommend-info" wx:for="{{recommendList}}" bindtap="sidebarShow" data-ajaxurl="{{item.url}}">
+          <view class="recommend-img">
+            <image src="{{item.img}}"></image>
+          </view>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </view> 
+    <!--品牌列表-->
+    <view class="brands-model">
+      <view class="brand-list" wx:for="{{brandList}}" wx:for-item="brand" id="{{indexNav[index]}}">
+        <text class="title">{{indexNav[index]}}</text>
+        <view wx:for="{{brand}}" wx:for-item="model" class="truck-list">
+          <view class="truck-model" wx:if="{{!model.list}}" bindtap="sidebarShow" data-ajaxurl="{{model.url}}">
+            <view class="truck-number">
+              <view class="brands-img">
+                  <image src="{{model.logo}}"></image>  
+              </view>
+              <text>{{model.F_BrandName}}</text>
+            </view>
+          </view>
+          <!--品牌集团-->
+          <view class="group" wx:else>
+            <view class="group-model">
+              <image src="{{model.F_BrandGroupImg}}"></image>
+              <text class="group-title">{{model.F_BrandGroupName}}</text>
+              <text class="group-name">集团</text>
+            </view>
+            <view class="number-one" wx:if="{{model.order}}">
+              <image src="https://s.kcimg.cn/wap/images/app_icon/first.png" style="width:13px;height:13px"></image>
+              <text>{{model.order}}No.1</text>
+            </view>
+            <!--集团分类-->
+            <view class="group-classify">
+              <view class="group-classify-list">
+                <text wx:for="{{model.list}}" bindtap="sidebarShow" data-ajaxurl="{{item.url}}">{{item.F_BrandName}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>    
+    </view>
+    <!--其他品牌-->
+    <view class="other">
+      <view class="other-list" wx:if="{{otherBrandShow}}">
+        <text>更多品牌</text>
+        <view class="truck-other" wx:for="{{otherBrandList}}" bindtap="sidebarShow" data-ajaxurl="{{item.url}}">
+          <view class="other-model">
+            <view class="other-img">
+               <image src="{{item.logo}}"></image> 
+            </view>
+            <text>{{item.F_BrandName}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="other-brand" bindtap="moreBrand" wx:if="{{moreShow}}">
+        <text>{{otherBrandShow ? '收起' : '展开'}}皮卡、微面品牌</text>
+        <view class="other-brand-icon" animation="{{animation}}">
+          <text>下</text> 
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<!--侧边弹层-->
+<view class="mask" bindtap="sidebarListHide" wx:if="{{shadeShow}}" bindtouchmove="nihao">
+  <scroll-view class="mask-wrapper"  scroll-y  scroll-with-animation="true">
+    <view class="mask-content">
+    
+    </view>
+  </scroll-view>
+</view>
+<view class="sidebar" style="{{sidebarListPop?'right:0;':'right:-100%'}}" scroll-y="true">
+  <view class="sidebar-container">
+    <view class="sidebar-title">
+      <text class="title-icon" bindtap="sidebarListHide">回</text>
+      <text>{{sidebarData.brandName}}</text>
+    </view>
+    <view class="sidebar-module" wx:for="{{sidebarData.seriesList}}">
+      <text class="header">{{item[0].info.F_SubCategoryName}}</text>
+      <view class="sidebar-chunk" wx:for="{{item}}" data-item="{{item.info}}" bindtap="clickSidebar">
+        <view class="sidebar-module-list">
+          <view class="sidebar-img">
+            <image src="{{item.img[0].src}}"></image>
+          </view>
+          <text class="truck-version">{{item.info.F_ShortName}}</text>
+          <text class="price" wx:if="{{item.priceScope.min}}">{{item.priceScope.min == item.priceScope.max ? item.priceScope.min : item.priceScope.min+'-'+item.priceScope.max}}万元</text>
+          <text wx:else class="price">暂无报价</text>
+        </view>
+      </view>
+    </view>
+    <!--展开更多商用车-->
+    <view class="sidebar-module" wx:for="{{sidebarData.otherSeriesList}}" wx:if="{{!sidebarData.seriesList.length || moreSeriesShow}}">
+      <text class="header">{{item[0].info.F_SubCategoryName}}</text>
+      <view class="sidebar-chunk" wx:for="{{item}}" data-item="{{item.info}}" bindtap="clickSidebar">
+        <view class="sidebar-module-list">
+            <view class="sidebar-img">
+              <image src="{{item.img[0].src}}"></image>
+            </view>
+          <text class="truck-version">{{item.info.F_ShortName?item.info.F_ShortName:item.info.F_SeriesName + ' ' + item.info.F_SubCategoryName}}</text>
+          <text class="price" wx:if="{{item.priceScope.min}}">{{item.priceScope.min+'-'+item.priceScope.max}}万元</text>
+          <text wx:else class="price">暂无报价</text>
+        </view>
+      </view>
+    </view>
+    <view class="more-series" bindtap="moreSeries" wx:if="{{sidebarData.seriesList.length && !sidebarData.otherSeriesList.length && sidebarData.otherSeriesList.length !=0}}">
+      <text>{{moreSeriesShow ? '收起' : '展开'}}更多车系</text>
+      <view class="more-series-icon" animation="{{animation}}">
+        <text>下</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!--索引导航-->
+<view class="scale" hidden="{{indicateShow}}">
+  <text>{{navInfo}}</text>
+</view>
+<view class="nav">
+  <text wx:for="{{indexNav}}" bindtap="indexNav" data-index="{{indexNav[index]}}" class="{{indexNav[index] === navInfo ? 'selected' : ''}}">{{indexNav[index]}}</text>
+</view>
+<!--返回顶部-->
+<view style="{{goTop?'right:0':'right:-70px'}}" class="back-top" bindtap="backTop">回顶部</view>
+  <!--错误提示-->
+  <view wx:if="{{errPop}}" class="err-pop">
+      <view class="err-content">
+          <view class="err-text">
+            <text>{{errText}}</text>
+          </view>
+          <view class="err-button" bindtap="closeErrPop">
+            <text>确定</text>
+          </view> 
+      </view>
+  </view>

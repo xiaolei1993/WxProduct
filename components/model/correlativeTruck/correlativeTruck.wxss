@@ -1,0 +1,138 @@
+.correlative{
+  background: #fff;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+.correlative-title{
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  padding: 0 30rpx;
+}
+.title-text{
+  font-weight: bold;
+  font-size: 32rpx;
+  color: #333;
+}
+.choose{
+  margin-left: 20rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.option-wrapper{
+  padding: 10rpx 20rpx;
+}
+.option-wrapper .options{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.option-wrapper .options .key-mnodel{
+  width: 142rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 10rpx 0;
+  text-align: center;
+  font-size: 24rpx;
+  color: #333;
+}
+.option-list{
+ 
+}
+.option{
+  float:left;
+  width: 126rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 10rpx;
+  border: 2rpx solid #e5e5e5;
+  border-radius: 8rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #333;
+}
+.select-option{
+  color:#586c94;
+  border:2rpx solid #586c94
+}
+.model-list{
+  border-top: 2rpx solid #e5e5e5;
+  padding: 0 30rpx;
+}
+.truck-info{
+  position: relative;
+  padding: 30rpx 0 20rpx 0;
+  border-bottom:1px solid #eee;
+}
+
+.title > text{
+  font-size: 28rpx;
+  color: #333;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.title > .truck-name-tag{
+    margin-right: 20rpx;
+    color: #448dea;
+    font-size: 24rpx;
+}
+.guide-price{
+  margin-top: 12rpx;
+  overflow: hidden;
+}
+.guide-price > text{
+  font-size: 24rpx;
+  color: #999;
+}
+.tags{
+  float: right;
+  display: inline-block;
+}
+.tags > text{
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+.action{
+  position: relative;
+  height: 64rpx;
+  margin-top: 20rpx;
+}
+.hot-price{
+  font-size: 28rpx;
+  color: #f60;
+}
+.comparison{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 64rpx;
+}
+.foot-price{
+  display: inline-block;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  padding: 0 30rpx;
+  border: 2rpx solid #586c94;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  color: #586c94;
+}
+.compare{
+  display: inline-block;
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 30rpx;
+  font-size: 24rpx;
+  color: #586c94;
+}
+.compare:before{
+  font-family: "detail";
+  content: "\52a0";
+  margin-right: 6rpx;
+  vertical-align: middle;
+}
+.add-compare:before{
+ content: "";
+}

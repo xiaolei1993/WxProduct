@@ -1,0 +1,27 @@
+{
+  "pages":[
+    "pages/brand/brand",
+    "pages/index/index",
+    "pages/series/series",
+    "pages/footerPrice/footerPrice",
+    "pages/model/model",
+    "pages/success/success",
+    "pages/modelPhoto/modelPhoto",
+    "pages/seriesConfig/seriesConfig",
+    "pages/photoInfo/photoInfo",
+    "pages/seriesPhoto/seriesPhoto",
+    "pages/modelConfig/modelConfig",
+    "pages/contrast/contrast",
+    "pages/addProduct/addProduct",
+    "pages/selectProduct/selectProduct",
+    "pages/location/location",
+    "pages/logs/logs",
+    "pages/statement/statement"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"#fff"
+  }
+}

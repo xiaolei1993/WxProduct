@@ -1,0 +1,83 @@
+<!--pages/seriesColligate/seriesColligate.wxml-->
+<import src="../../components/series/truckImage/truckImage.wxml"/>
+<import src="../../components/series/modelTypeList/modelTypeList.wxml"/>
+<import src="../../components/series/otherConcerns/otherConcerns.wxml"/>
+<import src="../../components/dealer/dealer.wxml"/>
+<import src="../../components/selectLocation/selectLocation.wxml"/>
+<view class="container">
+  <scroll-view class="series-wrapper" scroll-y="true" scroll-into-view="{{goTop}}" scroll-with-animation="true">
+    <!--导航-->
+    <view class="series-nav" id="goTop">
+      <view class="summarize">
+        <text>综述</text>
+      </view>
+      <view class="nav-text">
+        <text bindtap="goUrl" data-url="../seriesConfig/seriesConfig">配置</text>
+      </view>
+      <view class="nav-text" bindtap="goUrl" data-url="../seriesPhoto/seriesPhoto">
+        <text>图片</text>
+      </view>
+    </view>
+    <!--图片-->
+    <template is="picture" data="{{picture,truckImageData}}"/>
+    <!--车型列表-->
+      <template is="modelType" data="{{modelList,model,sellState,optionState,modelListNumber,compareState}}"/>  
+    <!--经销商推荐列表-->
+    <template is="dealer" data="{{dealer,dealerList,locationInfo}}"/>
+    <!--看过该车的人还关注-->
+    <template is="otherConcerns" data="{{otherConcerns,otherData}}"/>
+  </scroll-view>
+  <!--询底价按钮-->
+  <view class="footer-info">
+    <view class="footer-nav">
+      <text bindtap="goUrl" data-url="../seriesConfig/seriesConfig">配置</text>
+      <text bindtap="goUrl" data-url="../seriesPhoto/seriesPhoto">图片</text>
+    </view>
+    <view class="footer-price" bindtap="goFooterPrice" data-productId="{{footerInfo.ProductId}}" id="footerPrice">
+        <text class="foot-price-text">询底价</text>
+        <view wx:if="{{footerInfo.askTotal > 100}}">
+          <text class="number">已有</text>
+          <text class="number">{{footerInfo.askTotal}}</text>
+          <text class="number">人询价</text>
+        </view>
+        <view wx:if="{{footerInfo.askTotal && footerInfo.askTotal < 100}}">
+          <text class="number">已有100人+询底价</text>
+        </view>
+    </view>
+  </view>
+    <!--错误提示-->
+  <view wx:if="{{errPop}}" class="err-pop">
+      <view class="err-content">
+          <view class="err-text">
+            <text>{{errText}}</text>
+          </view>
+          <view class="err-button" bindtap="closeErrPop">
+            <text>确定</text>
+          </view> 
+      </view>
+  </view>
+  <!-- 对比的数量 -->
+  <view class="{{compareNumber > 0 ? 'compare-number compare-visible' : 'compare-number'}}" bindtap="goCompare">对比({{compareNumber}})</view>
+  <!--换地区提示-->
+  <view wx:if="{{resetLocationPop}}" class="err-pop">
+    <view class="err-content">
+      <view class="err-text">
+        <view>
+          <text>您当前所在的城市是</text>
+          <text class="highlight"> {{myRegion.cityname}}</text>
+        </view>
+        <text>是否切换</text>
+      </view>
+      <view class="switch-location-buttons">
+        <view class="cancel" bindtap="okSwitchLocation">
+          <text>取消</text>
+        </view>
+        <view class="ok" bindtap="cancelSwitchLocation">
+          <text>确定</text>
+        </view> 
+      </view> 
+  </view>
+  </view>
+  <!-- 选择地区弹层 -->
+  <template is="selectLocation" data="{{searchContent,selectLocationPop,locationInfo,selectLocation,myRegion,indexNav,hotLocation,locationList,cityList,cityListPop,navInfo,navInfoShow,searchResultData,searchResultPop}}"/>
+</view>

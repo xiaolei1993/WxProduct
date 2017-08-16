@@ -1,0 +1,19 @@
+<!--参数配置-->
+<template name="parameterConfig">
+  <view class="parameter-config" wx:if="{{parameterData.length}}">
+    <text class="config-title">参数配置</text>
+    <view class="content">
+      <view wx:for="{{parameterData}}" class="parameter-list" wx:if="{{index < 6 && ele.value != '' && ele.value != 0}}">
+        <view class="key">
+          <text>{{item.F_ParameterName}}</text>
+        </view>
+        <view class="value">
+          <text>{{item.value + item.unit}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="load-more" bindtap="goUrl" data-url="../modelConfig/modelConfig">
+      <text>查看详细参数配置</text>
+    </view>
+  </view>
+</template>

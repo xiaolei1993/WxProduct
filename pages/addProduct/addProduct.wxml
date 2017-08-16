@@ -1,0 +1,143 @@
+<!--pages/addModel/addModel.wxml-->
+<view class="add-product">
+    <!--导航头-->
+    <view class="nav">
+      <view bindtap="setSelected" data-index="0">
+          <text class="{{selected == 0 ? 'selected' : ''}}">热门</text>
+      </view>
+      <view bindtap="setSelected" data-index="1">
+        <text class="{{selected == 1 ? 'selected' : ''}}">品牌</text>
+      </view>
+      <view bindtap="setSelected" data-index="2">
+        <text class="{{selected == 2 ? 'selected' : ''}}">对比记录</text>
+      </view>
+    </view>
+    <swiper style="height:100%" current="{{selected}}" bindchange="setSelected">
+        <!-- 热门列表 -->
+        <swiper-item>
+          <scroll-view  scroll-y="true">
+            <view class="hot-module" wx:if="{{selected == 0}}">
+              <view class="hot-list" wx:if="{{listInfo.hot}}">
+                <view class="hot-recommend-model" wx:for="{{listInfo.hot}}" data-productId="{{item.F_ProductId}}" data-name="{{item.F_ProductName}}" bindtap="selectProduct">
+                  <text class="choose" wx:if="{{item.F_ProductId == productId}}">(已选)</text>
+                  <text class="{{item.F_ProductId == productId ? 'hot-model-text' : ''}}">{{item.F_ProductName}}</text>
+                </view>
+              </view>
+              <view wx:else class="empty">
+                <text>无</text>
+                <text class="empty-text">很遗憾~ 没有相关内容~</text>
+              </view>
+            </view>    
+          </scroll-view>
+        </swiper-item>
+        <!--品牌推荐列表-->
+        <swiper-item>
+         <scroll-view  scroll-y="true" scroll-into-view="{{navInfo}}" scroll-with-animation="true">
+            <view class="brand-page" wx:if="{{selected == 1}}">
+              <!--推荐品牌-->
+              <view class="recommend">
+                <text class="header">推荐品牌</text>
+                <view class="recommend-list">
+                  <view class="recommend-info" wx:for="{{listInfo.recommend}}" data-brandId="{{item.id}}" bindtap="sidebarShow">
+                    <view class="recommend-img">
+                      <image src="{{item.img}}"></image>
+                    </view>
+                    <text>{{item.name}}</text>
+                  </view>
+                </view>
+              </view>
+              <!--品牌列表-->
+              <view class="brands-model">
+                <view class="brand-list" wx:for="{{listInfo.brands}}">
+                  <text class="title" id="{{listInfo.brandsKey[index]}}">{{listInfo.brandsKey[index]}}</text>
+                  <view wx:for="{{item}}" data-brandId="{{item.id}}" bindtap="sidebarShow">
+                    <view class="truck-model">
+                      <view class="truck-number">
+                        <view class="brands-img">
+                          <image src="{{item.img}}"></image>
+                        </view>
+                        <text>{{item.name}}</text>
+                      </view>
+                    </view>
+                  </view>
+                </view>    
+              </view>
+            </view>  
+          </scroll-view>  
+        </swiper-item>
+        <!--对比记录-->
+        <swiper-item>
+          <scroll-view  scroll-y="true">
+            <view class="contrast-page" wx:if="{{selected == 2}}">
+              <view class="contrast-list">
+                <view class="contrast-recommend-model" wx:for="{{compareHistory}}" data-productId="{{item.F_ProductId}}" bindtap="selectProduct">
+                  <view class="contrast-letters">
+                    <text class="shoose" wx:if="{{item.F_ProductId == productId}}">(已选)</text>
+                    <text class="{{item.F_ProductId == productId ? 'hot-model-text' : ''}}">{{item.F_ProductName}}</text>
+                  </view>
+                  <view class="contrast-ico" data-index="{{index}}" catchtap="clearHistory">叉</view>
+                </view>
+                <view wx:if="{{!compareHistory.length}}" class="empty">
+                  <text>无</text>
+                  <text class="empty-text">很遗憾~ 没有相关内容~</text>
+                </view>
+              </view>
+              <!--清除按钮-->
+              <view wx:if="{{compareHistory.length}}" class="clear-all" data-index="all" bindtap="clearHistory">
+                <text>清除所有记录</text>
+              </view>
+              <!--没有对比记录-->
+              <view class="empty-model" wx:if="{{}}">
+                <text>暂无对比记录</text>
+              </view>
+            </view>
+          </scroll-view>  
+        </swiper-item>
+      </swiper>   
+</view>
+
+<!--索引导航-->
+<view class="scale" hidden="{{indicateShow}}">
+  <text>{{navInfo}}</text>
+</view>
+<view class="index-nav" wx:if="{{selected == 1}}">
+  <text wx:for="{{listInfo.brandsKey}}" bindtap="indexNav" data-index="{{item}}" class="{{item == navInfo ? 'selected' : ''}}">{{item}}</text>
+</view>
+
+<!--侧边弹层-->
+<view class="mask" bindtap="sidebarListHide" wx:if="{{shadeShow}}" bindtouchmove="nihao">
+  <scroll-view class="mask-wrapper"  scroll-y  scroll-with-animation="true">
+    <view class="mask-content">
+    
+    </view>
+  </scroll-view>
+</view>
+
+<view class="sidebar" style="{{sidebarListPop?'right:0;':'right:-100%'}}" scroll-y="true">
+  <view class="sidebar-container">
+    <view class="sidebar-title">
+      <text class="title-icon" bindtap="sidebarListHide">回</text>
+      <text>选择车系</text>
+    </view>
+    <view class="sidebar-module">
+      <view wx:for="{{sidebarData}}" data-item="{{item}}" bindtap="goSelectProduct">
+        <text class="header">{{item.seriesName}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 品牌选择车型弹层 -->
+<view class="{{selectProductShow ? 'select-model visible' : 'select-model'}} ">
+  <scroll-view class="wrapper">
+    <view class="switch-title">
+      <text class="back" bindtap="back">回</text>
+      <text>换车型</text>
+    </view>
+    <view class="series-name">{{productName}}</view>
+    <view class="product-name" wx:for="{{productList}}" data-name="{{item.F_ProductName}}" data-productId="{{item.F_ProductId}}" bindtap="selectProduct">
+      <text class="shoose" wx:if="{{item.F_ProductId == productId}}">(已选)</text>
+      <text class="{{item.F_ProductId == productId ? 'selected' : ''}}">{{item.F_ProductName}}</text>
+    </view>
+  </scroll-view>
+</view>

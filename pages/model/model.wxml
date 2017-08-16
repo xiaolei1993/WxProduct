@@ -1,0 +1,97 @@
+<!--pages/model/model.wxml-->
+<import src="../../components/model/truckImage/truckImage.wxml"/>
+<import src="../../components/model/parameter/parameterConfig.wxml"/>
+<import src="../../components/model/correlativeTruck/correlativeTruck.wxml"/>
+<import src="../../components/dealer/dealer.wxml"/>
+<import src="../../components/model/otherConcerns/otherConcerns.wxml"/>
+<import src="../../components/jointly/switchModel/switchModel.wxml"/>
+<import src="../../components/selectLocation/selectLocation.wxml"/>
+<view class="container">
+  <scroll-view class="model-wrapper" scroll-into-view="{{scrollInfo}}" scroll-y="true">
+    <view class="model" id="goTop">
+      <view class="model-nav">
+        <view class="model-round">
+          <text>综述</text>
+        </view>
+        <view class="nav-text" bindtap="goUrl" data-url="../modelConfig/modelConfig">
+          <text>配置</text>
+        </view>
+        <view class="nav-text" bindtap="goUrl" data-url="../modelPhoto/modelPhoto">
+          <text>图片</text>
+        </view>
+      </view>
+      <!--车型图片-->
+      <template is="picture" data="{{picture,truckImageData}}"/>
+      <!--车型-->
+      <view class="truck-model">
+        <text class="truck-model-text">{{titleName}}</text>
+        <text class="similarity-car" bindtap="examineSimilar" wx:if="{{gatherTotal > 1}}">查看{{gatherTotal - 1}}款相近车型</text>
+        <view class="exchange" bindtap="changeTruck">换车型</view>
+      </view>
+      <!--经销商参考价-->
+      <view class="quote-wrapper" wx:if="{{areaPrice.length}}">
+          <view class="dealer-quote" wx:for="{{areaPrice}}">
+              <text class="quote-text">经销商参考价</text>
+              <text class="quote-price">{{item.price}}</text>
+          </view>
+      </view>
+      <!--参数配置数据-->
+      <template is="parameterConfig" data="{{parameterConfig,parameterData}}"/>
+      <!--相近车型可选配置-->
+      <view id="examineSimilar"></view>
+      <template is="correlativeTruck" wx:if="{{gatherTotal > 1}}" data="{{correlativeTruck,productId,examineSimliarData,optionCondition,compareState}}"/>
+      <!--经销商推荐列表-->
+      <template is="dealer" data="{{dealer,dealerList,locationInfo}}"/>
+      <!--看过该车的人还关注-->
+      <template is="otherConcerns" data="{{otherConcerns,otherData,otherIndex,exchangeButton}}"/>
+      <view style="height:20rpx;background-color:#f5f5f5"></view>
+    </view>
+  </scroll-view>
+  <!--换车型弹层-->
+  <template is="switchModel" data="{{switchModel,switchModelPop,switchModelData}}"/>  
+  <!--错误提示-->
+  <view wx:if="{{errPop}}" class="err-pop">
+      <view class="err-content">
+          <view class="err-text">
+            <text>{{errText}}</text>
+          </view>
+          <view class="err-button" bindtap="closeErrPop">
+            <text>确定</text>
+          </view> 
+      </view>
+  </view>
+  <!-- 对比的数量 -->
+  <view class="{{compareNumber > 0 ? 'compare-number compare-visible' : 'compare-number'}}" bindtap="goCompare">对比({{compareNumber}})</view>
+  <!--询底价按钮-->
+  <view class="footer-info">
+      <view class="footer-nav">
+      <text bindtap="goUrl" data-url="../modelConfig/modelConfig">配置</text>
+      <text bindtap="goUrl" data-url="../modelPhoto/modelPhoto">图片</text>
+      <text class="{{compareState[productId] ? '' : 'compare-join'}}" data-productId="{{productId}}" bindtap="compare">{{compareState[productId] ? compareState[productId] : '对比'}}</text>
+    </view>
+    <view class="footer-price" wx:if="{{footerPriceShow}}" bindtap="goFooterPrice" data-productId="{{productId}}" id="footerPrice">
+      <text class="foot-price-text">询底价</text>
+      <view wx:if="{{askTotal > 100}}">
+        <text class="number">已有</text>
+        <text class="number">{{askTotal}}</text>
+        <text class="number">人询价</text> 
+      </view>
+      <view wx:else>
+        <text class="number">已有100人+询底价</text>
+      </view>
+    </view>
+  </view>
+      <!--错误提示-->
+  <view wx:if="{{errPop}}" class="err-pop">
+      <view class="err-content">
+          <view class="err-text">
+            <text>{{errText}}</text>
+          </view>
+          <view class="err-button" bindtap="closeErrPop">
+            <text>确定</text>
+          </view> 
+      </view>
+  </view>
+  <!-- 选择地区弹层 -->
+  <template is="selectLocation" data="{{selectLocationPop,searchContent,locationInfo,selectLocation,myRegion,indexNav,hotLocation,locationList,cityList,cityListPop,navInfo,navInfoShow,searchResultData,searchResultPop}}"/>
+</view>

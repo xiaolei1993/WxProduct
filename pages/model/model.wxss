@@ -1,0 +1,155 @@
+/* pages/model/model.wxss */
+@import "../../components/model/truckImage/truckImage.wxss";
+@import "../../components/model/parameter/parameterConfig.wxss";
+@import "../../components/model/correlativeTruck/correlativeTruck.wxss";
+@import "../../components/dealer/dealer.wxss";
+@import "../../components/jointly/switchModel/switchModel.wxss";
+@import "../../components/model/otherConcerns/otherConcerns.wxss";
+@import "../../components/selectLocation/selectLocation.wxss";
+page{
+  height:100%;
+  padding-bottom:100rpx;
+  background-color: #f5f5f5; 
+  box-sizing: border-box;
+}
+.container{
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.model-wrapper{
+  height:100%;
+}
+.model-nav{
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  height: 80rxp;
+  line-height: 80rpx;
+  background: #fff;
+}
+.model-round{
+  width: 33.3%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #586c94;
+  border-bottom: 2rpx solid #586c94;
+}
+.nav-text{
+  width: 33.3%;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+/*车型*/
+.truck-model{
+  position: relative;
+  min-height: 120rpx;
+  background: #fff;
+  padding: 20rpx 200rpx 20rpx 30rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+.truck-model-text{
+  line-height: 40rpx;
+  font-size: 28rpx;
+}
+.similarity-car{
+  float: right;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  color: #586c94;
+  text-decoration: underline;
+}
+.exchange{
+  position: absolute;
+  top: 20rpx;
+  right: 0;
+  width: 152rpx;
+  color: #586c94;
+  font-size: 28rpx;
+  text-align: center;
+  border-left: 2rpx solid #e5e5e5;
+}
+.exchange:before{
+  display: block;
+  font-family: "detail";
+  content: "\91cd";
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+}
+.quote-wrapper{
+    padding:20rpx 30rpx;
+    background-color:#fff;
+  }
+  .quote-text{
+      color:#333;
+      font-size: 24rpx;
+  }
+  .quote-price{
+      font-size: 32rpx;
+      color: #f60;
+      margin-left: 10rpx;
+  }
+  .footer-info{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    overflow: hidden;
+  }
+  .footer-nav{ 
+    flex: 1;
+    width:50%;
+    border-top:1px solid #eee;
+    background-color:#fff;
+  }
+  .footer-nav > text{
+    display: inline-block;
+    width: 33.33%;
+    color: #586c94;
+    font-size: 32rpx;
+    text-align: center;
+    line-height:100rpx;
+  }
+  .compare-join:before{
+    font-family: "detail";
+    content: "\52a0";
+    margin-right: 6rpx;
+  }
+  .footer-price{
+    width: 268rpx;
+    padding: 16rpx 0 13rpx 0;
+    border-top:1px solid #f60;
+    background-color: #f60;
+  }
+  .footer-price .foot-price-text{
+    display: block;
+    font-size: 32rpx;
+    color: #fff;
+    line-height:28rpx;
+  }
+  .footer-price .number{
+    font-size: 24rpx;
+    color: rgba(255,255,255,0.7);
+  }
+  .compare-number{
+    position: fixed;
+    right:-140rpx;
+    bottom: 270rpx;
+    width: 140rpx;
+    height: 70rpx;
+    line-height: 70rpx;    
+    text-align: center; 
+    color:#fff;
+    font-size:24rpx;
+    transition: right .3s;
+    border-radius: 35rpx 0 0 35rpx;
+    background-color: rgba(21,113,229,.8);
+  }
+  .compare-visible{
+    right:0;
+}

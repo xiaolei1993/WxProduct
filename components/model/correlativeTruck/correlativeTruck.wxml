@@ -1,0 +1,43 @@
+<template name="correlativeTruck">
+  <view class="correlative">
+    <view class="correlative-title">
+      <text class="title-text">相近车型可选配置</text>
+      <text class="choose">请选择任意条件</text>
+    </view>
+    <!--筛选条件-->
+    <view class="option-wrapper">
+      <view wx:if="{{examineSimliarData.options}}" class="options" wx:for="{{examineSimliarData.options}}" wx:for-index="key">
+        <view class="key-mnodel">
+          <text>{{examineSimliarData.gatherKeys[key]}}</text>
+        </view>
+        <view class="option-list">
+          <view wx:for="{{item}}" data-key="{{examineSimliarData.gatherKeys[key]}}" data-value="{{item}}" class="{{optionCondition[examineSimliarData.gatherKeys[key]] == item?' option select-option':'option'}}" bindtap="selectOption">
+            <text>{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--筛选内容-->
+    <view class="model-list">
+      <view class="truck-info" wx:for="{{examineSimliarData.content}}"  data-item="{{item}}" bindtap="goSwitchModel" wx:if="{{item.show && item.F_ProductId != productId}}">
+        <view class="title">
+            <text wx:if="{{item.hotLocation}}" class="truck-name-tag">{{item.hotLocation}}</text>
+            <text class="truck-name-text">{{item.F_ProductName}}</text>
+        </view>
+        <view class="guide-price">
+          <text>厂商指导价：暂无</text>
+          <view class="tags">
+            <text wx:for="{{item.paramDetail}}" class="tag-text">{{item}}</text>
+          </view>
+        </view>
+        <view class="action">
+          <text class="hot-price">{{item.hotPrice}}</text>
+          <view class="comparison">
+            <text class="{{compareState[item.F_ProductId] ? 'compare add-compare' : 'compare'}}"  catchtap="compare" data-productId="{{item.F_ProductId}}">{{compareState[item.F_ProductId] ? compareState[item.F_ProductId] : '对比'}}</text>
+            <text class="foot-price" bindtap="goFooterPrice" data-productId="{{item.F_ProductId}}" id="footerPrice">询底价</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

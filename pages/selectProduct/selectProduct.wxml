@@ -1,0 +1,10 @@
+<!--pages/selectProduct/selectProduct.wxml-->
+<view class="container">
+  <scroll-view class="wrapper">
+    <view class="series-name">{{productName}}</view>
+    <view class="product-name" wx:for="{{productList}}" data-name="{{item.F_ProductName}}" data-productId="{{item.F_ProductId}}" bindtap="selectProduct">
+      <text class="shoose" wx:if="{{item.F_ProductId == productId}}">(已选)</text>
+      <text class="{{item.F_ProductId == productId ? 'selected' : ''}}">{{item.F_ProductName}}</text>
+    </view>
+  </scroll-view>
+</view>

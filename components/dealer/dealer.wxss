@@ -1,0 +1,134 @@
+.dealer{
+  margin-top: 20rpx;
+}
+.not-dealer{
+  height:200rpx;
+  color:#999;
+  font-size:28rpx;
+  line-height:60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.switch-location{
+  color:#448dea;
+}
+.dealer-header{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+  background: #fff;
+  border-bottom: 2rpx solid #e5e5e5;
+  overflow: hidden;
+}
+.dealer-header > text{
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+.location{
+  float: right;
+}
+.location:before{
+  content: "\4f4d";
+  font-family: "detail";
+  font-size: 28rpx;
+  color: #586c94;
+  margin-right: 10rpx;
+}
+.location > text{
+  font-size: 28rpx;
+  color: #586c94;
+}
+.location .city{
+  margin-left: 10rpx;
+}
+.dealer-content{
+  background: #fff;
+  padding: 0 30rpx;
+}
+.dealer-model{
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #eee;
+}
+.dealer-model:last-child{
+  border: none;
+}
+.dealer-title{
+  position: relative;
+  padding-left: 40rpx;
+}
+.vip:before{
+  content: '';
+  position: absolute;
+  top: 6rpx;
+  left: 0;
+  width: 28rpx;
+  height: 28rpx;
+  background: url(https://s.kcimg.cn/wap/images/detail/vip_dealer.png) no-repeat 0 2rpx ;
+}
+.dealer-title .dealer-text{
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 100rpx;
+}
+.dealer-title .dealer-price{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28rpx;
+  color: #f60;
+}
+.dealer-location{
+  display: block;
+  padding-left: 40rpx;
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+.funtion{
+  position: relative;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin-top: 20rpx;
+  padding-left: 40rpx;
+}
+.dealer-tags > text{
+  font-size: 24rpx;
+  color: #999;
+  overflow: hidden;
+}
+.dealer-action{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.dealer-action .contact{
+  display: inline-block;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 28rpx;
+  color: #586c94;
+  padding: 0 30rpx; 
+}
+.dealer-action .contact:before{
+  content: "\62e8";
+  font-family: "detail";
+  font-size: 32rpx;
+  margin-right: 6rpx;
+}
+.dealer-action .dealer-foot-price{
+  display: inline-block;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 28rpx;
+  border: 2rpx solid #586c94;
+  border-radius: 8rpx;
+  padding: 0 30rpx;
+  color: #586c94;
+}

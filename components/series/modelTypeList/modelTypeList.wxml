@@ -1,0 +1,51 @@
+<template name="modelType">
+  <view class="model-type">
+    <view class="title-name">
+      <text>车型报价</text>
+      <view class="sell-state-sum" wx:for="{{modelList}}" wx:if="{{sellState == index}}">
+        <text style="font-size:24rpx;color:#999;">共</text>
+        <text style="font-size:24rpx;color:#f60;"> {{item.total}} </text>
+        <text style="font-size:24rpx;color:#999;">款{{item.status}}车型</text>
+      </view>
+      <!--在售 || 停售 || 未发布-->
+      <view class="sell-state">
+        <text wx:for="{{modelList}}" data-index="{{index}}" class="{{sellState == index ? 'sell-state-visible' : ''}}" bindtap="selectSellState">{{item.status}}</text>
+      </view>
+    </view>
+    <!--数据列表-->
+    <view class="content" wx:for="{{modelList}}" wx:for-item="model" data-index="{{index}}" wx:if="{{sellState == index}}">
+      <view class="options">
+        <view class="option" wx:for="{{model.list}}" wx:for-index="number" bindtap="selectOpation" data-index="{{index}}" data-name="{{model.attrKey[number]}}">
+          <text class="{{optionState[index] == model.attrKey[number] ? 'option-visible' : ''}}">{{model.attrKey[number] != '10' ? model.attrKey[number] : '底盘'}}</text>
+        </view>
+      </view>
+      <view class="wrapper" data-number="{{index}}"wx:for="{{model.list}}" wx:for-item="ele" wx:for-index="number" wx:if="{{optionState[index] == model.attrKey[number]}}">
+        <view class="model-list" wx:for="{{ele}}" bindtap="goProduct" data-item="{{item}}" wx:if="{{index < modelListNumber}}">
+          <view class="truck-info">
+            <view class="title">
+              <text wx:if="{{item.hotLocation}}" class="truck-name-tag">{{item.hotLocation}}</text>
+              <text>{{item.speaclProName}}</text>
+            </view>
+            <view class="guide-price">
+              <text wx:if="{{item.priceScope}}">厂商指导价：{{item.priceScope}}</text>
+              <text wx:else>厂商指导价：{{item.F_Price != 0 ? item.F_Price + item.F_PriceUnit : '暂无'}}</text>
+              <view class="tags" wx:for="{{item.paramDetail}}">
+                <text>{{item}}</text>
+              </view>
+            </view>
+            <view class="action">
+              <text class="hot-price">{{item.hotPrice}}</text>
+              <view class="comparison">
+                <text class="{{compareState[item.F_ProductId] ? 'compare compare-join' : 'compare'}}" catchtap="compare" data-productId="{{item.F_ProductId}}">{{compareState[item.F_ProductId] ? compareState[item.F_ProductId] : '对比'}}</text>
+                <text class="foot-price" data-productId="{{item.F_ProductId}}" catchtap="goFooterPrice" id="footerPrice">询底价</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="load-more" wx:if="{{ele.length > modelListNumber}}" bindtap="loadMore">
+            <text>加载更多</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

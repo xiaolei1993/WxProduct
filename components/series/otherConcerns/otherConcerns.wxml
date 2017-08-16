@@ -1,0 +1,21 @@
+<template name="otherConcerns">
+  <view class="other-concerns" wx:if="{{otherData.length}}">
+    <view class="header-name">
+      <text>看过该车的人还关注</text>
+    </view>
+    <view class="other-content">
+      <view class="other-list" wx:for="{{otherData}}" data-item="{{item}}" bindtap="goOtherSeries">
+        <view class="other-image">
+          <image style="width:180rpx;height:120rpx;" src="{{item.img}}"></image>
+        </view>
+        <view class="truck-message">
+          <text class="head">{{item.name ? item.name : item.F_ProductName}}</text>
+        </view>
+        <view class="truck-price">
+          <text class="price-text">{{item.price ? item.price : item.F_Price == 0 ? '暂无报价' : item.F_Price + '万'}}</text>
+          <text class="ask-price" data-otherData="{{item}}" data-productId="{{item.askProId}}" catchtap="goFooterPrice">询底价</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

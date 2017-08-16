@@ -1,0 +1,56 @@
+<!--pages/seriesPhoto/seriesPhoto.wxml-->
+<import src="../../components/jointly/switchModel/switchModel.wxml"/>
+<view class="container">
+  <scroll-view scroll-y="true" style="height:100%" bindscrolltolower="loadData">
+    <view class="model-title" wx:if="{{!notSwitchModel}}">
+      <text class="model-title-text">{{proName}}</text>
+      <text class="switch-model-button" bindtap="changeTruck">换车型</text>
+    </view>
+    <view class="photo-album">
+      <view class="options">
+        <view wx:if="{{!noImg}}" class="{{photoData.typeId == 0 ? 'option option-selected' : 'option'}}" data-type="0" bindtap="detailed">
+          <text>全部</text>
+        </view>
+        <view class="{{photoData.typeId == item.id ? 'option option-selected' : 'option'}}" wx:for="{{photoData.options}}" data-type="{{item.id}}" bindtap="detailed">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+      <view class="photo-content">
+        <view wx:for="{{photoData.content}}" class="photo-model">
+          <view class="model-header">
+            <text class="type-name">{{item.F_TypeName}}</text>
+            <text class="type-number">{{item.imgCount}} 张</text>
+            <text class="more-photo" wx:if="{{photoData.typeId == 0}}" data-type="{{item.F_TypeId}}" bindtap="detailed">更多</text>
+          </view>
+          <view class="photo-wrapper">
+            <view class="photo-list" wx:for="{{item.imgList}}" wx:for-item="img" data-item="{{img}}" data-typeid="{{item.F_TypeId}}" bindtap="goImgInfo">
+              <image src="{{img.url}}"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--没有图片的时候-->
+      <view wx:if="{{noImg}}" class="no-img">
+        <image src="https://s.kcimg.cn/wap/images/detail/productApp/not-img.png" style="width:268rpx;height:194rpx;"></image>
+        <text>当前车系暂无图片</text>
+      </view>
+    </view>
+    <view class="loading" wx:if="{{loading}}">
+      <text class="loading-ring">等</text> 正在加载更多...
+    </view>
+  </scroll-view>
+  <!--换车型弹层-->
+  <template is="switchModel" data="{{switchModel,switchModelPop,switchModelData,modelAll}}"/>  
+  <!--询底价按钮-->
+  <view class="footer-price" bindtap="goFooterPrice" data-productid="{{askProId}}" id="footerPrice">
+    <text class="foot-price-text">询底价</text>
+    <view wx:if="{{askPriceNum > 100}}">
+      <text class="number">已有</text>
+      <text class="number">{{askPriceNum}}</text>
+      <text class="number">人询价</text> 
+    </view>
+    <view wx:if="{{askPriceNum && askPriceNum < 100}}">
+      <text class="number">已有100人+询底价</text>
+    </view>
+  </view>
+</view>

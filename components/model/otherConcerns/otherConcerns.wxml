@@ -1,0 +1,22 @@
+<template name="otherConcerns">
+  <view class="other-concerns" wx:if="{{otherData[otherIndex].length}}">
+    <view class="header-name">
+      <text>看过该车的人还关注</text>
+      <text wx:if="{{exchangeButton}}" class="exchange-buttom" bindtap="exchange">换一批</text>
+    </view>
+    <view class="other-content">
+      <view class="other-list" wx:for="{{otherData[otherIndex]}}" data-item="{{item}}" bindtap="goSwitchModel">
+        <view class="other-image">
+          <image style="width:180rpx;height:120rpx;" src="{{item.img}}"></image>
+        </view>
+        <view class="truck-message">
+          <text class="head">{{item.name ? item.name : item.F_ProductName}}</text>
+        </view>
+        <view class="truck-price">
+        <text class="price-text">{{item.price ? item.price : item.F_Price == 0 ? '暂无报价' : item.F_Price + '万'}}</text>
+          <text class="ask-price" data-productId="{{item.F_ProductId}}" catchtap="goFooterPrice" id="footerPrice">询底价</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

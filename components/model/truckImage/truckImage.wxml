@@ -1,0 +1,22 @@
+<!--导航-->
+<template name="picture">
+  <view class="picture" data-url="../modelPhoto/modelPhoto" bindtap="goUrl">
+      <view class="picture-list">
+        <image wx:if="{{truckImageData.imgSrc}}" src="{{truckImageData.imgSrc}}"></image>
+        <view  wx:if="{{truckImageData.notImg}}"  class="not-img">
+            <text>很遗憾~没有相关图片</text>
+        </view>
+      </view>
+      <!--牵引车排名-->
+      <view class="ranking" wx:if="{{truckImageData.rank}}">
+        <text class="ranking-icon"></text>
+        <text class="ranking-text">{{truckImageData.rank}}</text>
+      </view>
+      <view class="price">
+        <text class="vender" wx:if="{{truckImageData.price}}">厂商指导价：</text>
+        <text class="price-text" wx:if="{{truckImageData.price && truckImageData.price > 0}}">{{truckImageData.price}}万</text>
+        <text class="not-price" wx:else="{{!truckImageData.price}}">暂无报价</text>
+        <text class="picture-text" wx:if="{{truckImageData.imgTotal > 0}}">{{truckImageData.imgTotal}}张图片</text>
+      </view>
+    </view>
+</template>

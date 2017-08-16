@@ -1,0 +1,450 @@
+/* pages/brand/brand.wxss */
+page{
+  height:100%;
+}
+.container{
+  height:100%;
+  background-color: #f5f5f5; 
+  overflow: hidden;
+}
+.brand-wrapper{
+    height:100%;
+    background-color:#EFEFF4;
+}
+.recommend > .header{
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: #1571e5;
+}
+.recommend-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+.recommend-info{
+  width: 25%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+}
+.recommend-info:nth-child(n+5){
+  border: none;
+}
+.recommend-img{
+  position: relative;
+  z-index: 1;
+}
+.recommend-img:before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #d1d1d1;
+  background: #efefef;
+  z-index: -1;
+  font-family: "detail";
+  content: "\5361";
+}
+.recommend-img > image{
+  width:120rpx;
+  height: 80rpx;
+  background: #fff;
+}
+.recommend-info > text{
+  height: 24rpx;
+  line-height: 24rpx;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+.brand-list .truck-list:last-child .truck-number{
+  border: none;
+}
+.brand-list .title{
+  display: block;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 20rpx;
+  font-size: 32rpx;
+  color:#666;
+}
+.truck-model{
+  background: #fff;
+  padding-left: 20rpx;
+}
+.truck-number{
+  height: 100rpx;
+  line-height: 100rpx;
+  vertical-align: middle;
+  border-bottom:2rpx solid #eee;
+}
+.brands-img{
+  position:relative;
+  float:left;
+  width: 120rpx;
+  height: 100rpx;
+  line-height:100rpx;
+  margin-right:10rpx;
+}
+.brands-img:before{
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+  width: 120rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #d1d1d1;
+  background: #efefef;
+  z-index: 0;
+  font-family: "detail";
+  content: "\5361";
+  text-align: center;
+}
+.brands-img > image{
+  position:absolute;
+  left:0;
+  top:10rpx;
+  width:120rpx;
+  height: 80rpx;
+  background: #fff;
+  z-index:1;
+}
+.truck-number text{
+  font-size: 32rpx;
+  color: #333;
+}
+.other-brand{
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #fff;
+  text-align: center;
+  transition: all .3s ease-out;
+  margin: 24rpx 0;
+}
+.other-brand text{
+  font-size: 32rpx;
+  color: #999;
+  margin-right: 12rpx;
+}
+.other-brand-icon{
+  display: inline-block;
+}
+.other-brand-icon text{
+  font-family: "detail";
+  vertical-align: middle;
+}
+.back-top{
+  position: fixed;
+  bottom: 160rpx;
+  right: -140rpx;
+  width: 140rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 36rpx 0 0 36rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 24rpx;
+  background-color: rgba(88,108,148,.8);
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+  z-index: 9;
+}
+.sidebar{
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 570rpx;
+  transition: right .3s linear;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 12;
+}
+.sidebar-container{
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #f5f5f5;
+  z-index: 15;
+}
+.sidebar-container .sidebar-title{
+  position: relative;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 36rpx;
+  border-bottom: 2rpx solid #eee;
+  background: #fff;
+}
+.sidebar-title .title-icon{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 88rpx;
+  height: 88rpx;
+  color: #1571e5;
+  font-family: "detail";
+}
+.sidebar-module{
+  background: #f5f5f5;
+  overflow: hidden;
+}
+.sidebar-module > .header{
+  height: 48rpx;
+  line-height: 48rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+.sidebar-chunk{
+  padding: 0 20rpx;
+  background: #fff;
+}
+.sidebar-module-list{
+  position: relative;
+  padding: 20rpx 0 20rpx 170rpx;
+  overflow: hidden;
+  border-bottom: 1rpx solid #eee;
+}
+ .sidebar-chunk:last-child .sidebar-module-list{
+  border: none;
+} 
+.sidebar-img{
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+  width: 150rpx;
+  height: 100rpx;
+  z-index: 1;
+}
+.sidebar-img:before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #d1d1d1;
+  background: #efefef;
+  z-index: -1;
+  font-family: "detail";
+  content: "\5361";
+  text-align: center;
+}
+.sidebar-img image{
+  width: 150rpx;
+  height: 100rpx;
+}
+.sidebar-module-list .truck-version{
+  height: 32rpx;
+  line-height: 32rpx;
+  margin-top: 18rpx;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: block;
+  font-size: 32rpx;
+  color: #333;
+}
+.sidebar-module-list .price{
+  line-height: 24rpx;
+  font-size: 24rpx;
+  color: #f60;
+}
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 10;
+}
+.mask-wrapper{
+  height:100%;
+  width:100%;
+}
+.mask-content{
+  height:125%;
+}
+.group{
+  position: relative;
+  padding-left: 20rpx;
+  background: #fff;
+}
+.group image{
+  width: 120rpx;
+  height: 80rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+.group-model{
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.group-model .group-title{
+  font-size: 32rpx;
+  color: #333;
+}
+.group-model .group-name{
+  display: inline-block;
+  width: 48rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  color: #fff;
+  background: #076aff;
+  text-align: center;
+  font-size: 20rpx;
+  margin-left: 12rpx;
+  vertical-align: middle;
+  border-radius: 4rpx;
+}
+.group-classify{
+  padding-left: 130rpx;
+  border-bottom: 2rpx solid #eee;
+}
+.group-classify-list{
+  border-top: 2rpx dashed #e9e9e9;
+  overflow: hidden;
+}
+.group-classify-list text{
+  float: left;
+  width: 30%;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 24rpx;
+  color: #333;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+.number-one{
+  position: absolute;
+  top: 28rpx;
+  right: 56rpx;
+}
+.number-one > text{
+  font-size: 24rpx;
+  color: #f60;
+}
+.nav{
+  position: fixed;
+  right: 0;
+  top: 160rpx;
+}
+.nav text{
+  display: block;
+  line-height: 44rpx;
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+  padding: 0 10rpx;
+}
+.nav text.selected{
+  color: #1571e5;
+}
+.scale{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 160rpx;
+  height: 160rpx;
+  line-height: 160rpx;
+  margin: -80rpx 0 0 -80rpx;
+  text-align: center;
+  font-size: 100rpx;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  z-index: 12;
+  -webkit-transition: opacity .2s ease-out;
+  transition: opacity .2s ease-out;
+  border-radius: 16rpx;
+}
+.other-list > text{
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 32rpx;
+  color: #666;
+  padding: 0 20rpx;
+}
+.truck-other{
+  background: #fff;
+  padding-left: 20rpx;
+}
+.other-model{
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 2rpx solid #eee;
+}
+.truck-other:last-child .other-model{
+  border: none;
+}
+.other-img{
+  float:left;
+  width:120rpx;
+  height:100rpx;
+  margin-right: 10rpx;
+  position: relative;
+  z-index: 1;
+}
+.other-img:before{
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+  width: 120rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #d1d1d1;
+  background: #efefef;
+  z-index: 0;
+  font-family: "detail";
+  content: "\5361";
+  text-align: center;
+}
+.other-img > image{
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+  width: 120rpx;
+  height: 80rpx;
+  vertical-align: middle;
+  background: #fff;
+  z-index:1
+}
+.other-model text{
+  font-size: 32rpx;
+  color: #333;
+}
+.more-series{
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999;
+  background: #fff;
+  margin: 40rpx;
+}
+.more-series text{
+  margin-right: 12rpx;
+}
+.more-series-icon{
+  display: inline-block;
+}
+.more-series-icon text{
+  font-family: "detail";
+  vertical-align: middle;
+}

@@ -1,0 +1,28 @@
+<template name="switchModel">
+  <view class="switch-model" wx:if="{{switchModelPop}}">
+    <view class="switch-title">
+      <text class="back" bindtap="back">回</text>
+      <text>换车型</text>
+    </view>
+    <!--tab切换导航-->
+    <view class="switch-options">
+      <view class="options-list" wx:for="{{switchModelData.attrList}}" data-name="{{item}}" bindtap="selectModelOption">
+        <text class="{{item == switchModelData.paramName ? 'select-option' : ''}}">{{item}}</text>
+      </view>
+    </view>
+    <!--主体内容-->
+    <view class="switch-model-content" wx:for="{{switchModelData.priceList}}" wx:if="{{switchModelData.paramName == switchModelData.attrList[index]}}">
+      <view class="switch-model-list"  wx:for="{{item.list}}" bindtap="goSwitchModel" data-item="{{item}}">
+        <view class="model-name">
+          <text>{{item.specialProName}}</text>
+        </view>
+        <view class="switch-tags">
+          <view class="tags-wrapper">
+            <text wx:for="{{item.paramDetail}}">{{item}}</text>
+          </view>
+          <text class="sell-type">{{item.F_IsStopMake == 1 ? '' : (item.F_IsStopMake == 4 ? '停售' : '未上市')}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,106 @@
+<!--pages/config/config.wxml-->
+<import src="../../components/config/addSeries/addSeries.wxml"/>
+<view class="config">
+  <view class="product-name">
+    <view class="caption caption-name">
+      <text class="title">车型名称</text>
+      <view class="number">
+        <text class="existing">{{compareNumber}}</text>
+        <text class="total">/2</text>
+      </view>
+    </view>
+    <view class="name-info">
+      <view class="name" wx:if="{{configData.products[0] && configData.products[0].F_ProductName}}">
+        <text class="clear" bindtap="clear" data-index="0">×</text>
+        <view class="name-wrapper">
+          <text class="name-text">{{configData.products[0].F_ProductName}}</text>
+        </view>
+        <view class="foot-price" data-productId="{{configData.products[0].F_ProductId}}" bindtap="goFooterPrice" id="footerPrice">
+          <text>询底价</text>
+        </view>
+      </view> 
+      <view wx:else class="add-product" data-index="0" bindtap="addProduct">
+        <text class="add-text">加入车型</text>
+      </view>
+    </view>
+    <view class="name-info">
+      <view class="name" wx:if="{{configData.products[1] && configData.products[1].F_ProductName}}">
+        <text class="clear" bindtap="clear" data-index="1">×</text>
+        <view class="name-wrapper">
+          <text class="name-text">{{configData.products[1].F_ProductName}}</text>
+        </view>
+        <view class="foot-price" data-productId="{{configData.products[1].F_ProductId}}" bindtap="goFooterPrice" id="footerPrice">
+          <text>询底价</text>
+        </view>
+      </view>
+      <view wx:else class="add-product" data-index="1" bindtap="addProduct">
+        <text class="add-text">加入车型</text>
+      </view>
+    </view>
+  </view>
+  <scroll-view style="height:100%;" scroll-y="true" scroll-into-view="{{anchor}}" bindscroll="hiddenPop" scroll-with-animation="true">
+    <!--对比车型选项-->
+    <view class="model">
+      <view class="title-text" id="anchor">
+        <text>车型信息</text>
+      </view>
+      <view class="options">
+        <view class="caption">
+          <text>厂商指导价</text>
+        </view>
+        <view class="content">
+          <text class="content-text" wx:if="{{configData.products[0] && configData.products[0].F_Price && configData.products[0].F_Price != 0 &&  configData.products[0].F_Price != 'kong'}}">{{configData.products[0] && configData.products[0].F_Price}}万</text>
+          <text class="content-text" wx:if="{{configData.products[0] && configData.products[0].F_Price == 0 || configData.products[0] && !configData.products[0].F_Price && configData.products[0].F_Price != 'kong'}}">暂无报价</text> 
+        </view>
+      <view class="content">
+          <text class="content-text" wx:if="{{configData.products[1] && configData.products[1].F_Price && configData.products[1].F_Price != 0 && configData.products[1].F_Price != 'kong'}}">{{configData.products[1] && configData.products[1].F_Price}}万</text>
+          <text class="content-text" wx:if="{{configData.products[1] && configData.products[1].F_Price == 0 || configData.products[1] && !configData.products[1].F_Price && configData.products[1].F_Price != 'kong'}}">暂无报价</text> 
+      </view>
+      </view>
+      <view class="options">
+        <view class="caption">
+          <text>本地最低报价</text>
+        </view>
+        <view class="content">
+            <text wx:if="{{configData.lowPrice[0] && configData.lowPrice[0].F_BigPrice && configData.lowPrice[0].F_BigPrice != 0 && configData.lowPrice[0].F_BigPrice != 'kong'}}">{{configData.lowPrice[0] && configData.lowPrice[0].F_BigPrice}}万</text>
+            <text wx:if="{{configData.lowPrice[0] && !configData.lowPrice[0].F_BigPrice && configData.lowPrice[0].F_BigPrice != 'kong'}}">暂无报价</text>
+        </view>
+        <view class="content">
+            <text wx:if="{{configData.lowPrice[1] && configData.lowPrice[1].F_BigPrice && configData.lowPrice[1].F_BigPrice != 0 && configData.lowPrice[1].F_BigPrice != 'kong'}}">{{configData.lowPrice[1] && configData.lowPrice[1].F_BigPrice}}万</text>
+            <text wx:if="{{configData.lowPrice[1] && !configData.lowPrice[1].F_BigPrice && configData.lowPrice[1].F_BigPrice != 'kong'}}">暂无报价</text>
+        </view>
+      </view>
+    </view>
+    <!-- 其他参数项 -->
+    <view wx:for="{{configData.paramList[0]}}" wx:key="model" wx:for-index="number"  wx:if="{{item.list.length}}" class="model">
+      <view class="title-text" id="{{'anchor' + number}}">
+        <text>{{item.F_ParameterTypeName}}</text>
+      </view>
+      <view wx:for="{{item.list}}" wx:key="list" class="options">  
+        <view class="caption">
+          <text>{{item.F_ParameterName}}</text>
+        </view> 
+      <view class="content">
+          <text class="content-text" wx:if="{{item.value != 0}}">{{item.value + item.unit}}</text>
+          <text wx:else></text>
+        </view> 
+        <view class="content">
+          <text class="content-text" wx:if="{{configData.paramList[1] && configData.paramList[1][number] && configData.paramList[1][number].list && configData.paramList[1][number].list[index] && configData.paramList[1][number].list[index].value && configData.paramList[1][number].list[index].value != 0}}">{{configData.paramList[1] && configData.paramList[1][number] && configData.paramList[1][number].list && configData.paramList[1][number].list[index] && configData.paramList[1][number].list[index].value + configData.paramList[1][number].list[index].unit}}</text>
+          <text wx:else></text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <!--分类框-->
+  <view class="classify" bindtap="classifyShow">
+    <text>分类</text>
+  </view>
+  <view class="classify-content" wx:if="{{classifyPop}}">
+    <view class="classify-info" bindtap="anchor" data-anchor="anchor">
+      <text>车型信息</text>
+    </view>
+    <view class="classify-info" bindtap="anchor" wx:key="anchor" data-anchor="{{'anchor' + index}}" wx:if="{{configData.paramList[0].length && configData.paramList[0][index].list.length}}" wx:for="{{configData.paramList[0]}}">
+      <text>{{item.F_ParameterTypeName}}</text>
+    </view>
+  </view>
+</view>

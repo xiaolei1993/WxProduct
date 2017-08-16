@@ -1,0 +1,82 @@
+<template name="addSeries">
+  <view class="add-series">
+    <!--导航头-->
+    <view class="nav">
+      <view class="hot" bindtap="setSelected(0)">
+          <text class="{{nav-text ? 'current' : 'current'}}">热门</text>
+      </view>
+      <view class="brand" bindtap="setSelected(1)">
+        <text class="nav-text">品牌</text>
+      </view>
+      <view class="contrast-record" bindtap="setSelected(2)">
+        <text class="nav-text">对比记录</text>
+      </view>
+    </view>
+    <view class="wrapper">
+      <!--热门列表-->
+      <view class="hot-module">
+        <view class="hot-list" wx:if="{{selected == 0 && listInfo.hot}}">
+          <view class="hot-recommend-model">
+            <text class="choose">(已选)</text>
+            <text class="hot-model-text">一汽解放 J6P重卡 60周年纪念版 460马力 6X4牵引车(CA4250P66K24T1A1E5)</text>
+          </view>
+        </view>
+        <!--<view class="empty">
+          <text>无</text>
+          <text class="empty-text">很遗憾~ 没有相关内容~</text>
+        </view>-->
+      </view>
+      <!--品牌推荐列表-->
+      <view class="brand-page" wx:if="{{selected == 1}}">
+        <!--推荐品牌-->
+        <view class="recommend">
+          <text class="header">推荐品牌</text>
+          <view class="recommend-list">
+            <view class="recommend-info">
+              <view class="recommend-img">
+                <image src="https://img4.kcimg.cn/imgser/201610270350198de82b74bce0.png!120"></image>
+              </view>
+              <text>解放</text>
+            </view>
+          </view>
+        </view>
+        <!--品牌列表-->
+        <view class="brands-model">
+          <view class="brand-list">
+            <text class="title">A</text>
+            <view>
+              <view class="truck-model">
+                <view class="truck-number">
+                  <view class="brands-img">
+                    <image src="https://img4.kcimg.cn/imgser/201610270350198de82b74bce0.png!120"></image>
+                  </view>
+                  <text>解放</text>
+                </view>
+              </view>
+            </view>
+          </view>    
+        </view>
+      </view>
+      <!--对比记录-->
+      <view class="contrast-page" wx:if="{{selected == 2}}">
+        <view class="contrast-list">
+          <view class="contrast-recommend-model">
+            <view class="contrast-letters">
+              <text class="shoose">(已选)</text>
+              <text>一汽解放 新J6P重卡 领航南方版 460马力 6X4牵引车(CA4250P66K25T1A1E5)</text>
+            </view>
+            <view class="contrast-ico">叉</view>
+          </view>
+        </view>
+        <!--清除按钮-->
+        <view class="clear-all">
+          <text>清除所有记录</text>
+        </view>
+        <!--没有对比记录-->
+        <view class="empty-model" wx:if="{{}}">
+          <text>暂无对比记录</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

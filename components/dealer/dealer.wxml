@@ -1,0 +1,38 @@
+<template name="dealer">
+  <view class="dealer">
+  <!--头部-->
+    <view class="dealer-header">
+      <text>经销商</text>
+      <view class="location" bindtap="goSelectLocation">
+        <text class="province">{{locationInfo.provincename ? locationInfo.provincename : '全国'}}</text>
+        <text class="city">{{locationInfo.cityname}}</text>
+      </view>
+    </view>
+    <!--经销商列表-->
+    <view class="dealer-content">
+      <view class="dealer-model" wx:for="{{dealerList}}">
+        <view class="{{item.vip ? 'dealer-title vip' : 'dealer-title'}}">
+          <text class="dealer-text">{{item.name}}</text>
+          <text class="dealer-price">{{item.price == '' ? '' : item.price + '起'}}</text>
+        </view>
+        <text class="dealer-location">{{item.address}}</text>
+        <view class="funtion">
+          <view class="dealer-tags">
+            <text wx:if="item.tag1 != ''">{{item.tag1}}</text>
+            <text wx:if="item.tag2 != ''">{{item.tag2}}</text>
+          </view>
+          <view class="dealer-action">
+            <text class="contact" wx:if="{{item.phone}}" data-phone="{{item.phone}}" bindtap="makePhone">联系经销商</text>
+            <text class="dealer-foot-price" data-dealerInfo="{{item}}" catchtap="goFooterPrice" id="footerPrice">询底价</text>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{!dealerList.length}}" class="not-dealer">
+        <view class="classname">
+          <text>当前地区暂无经销商</text>
+        </view>
+        <text class="switch-location" bindtap="goSelectLocation">切换地区</text>
+      </view>
+    </view>
+  </view>
+</template>
